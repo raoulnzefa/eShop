@@ -32,15 +32,14 @@ const mutations = {
   }
 }
 
-const DELAY_TIME = 500
-const execHandler = (fn, flag, time = DELAY_TIME) => {
+const execHandler = (fn, flag, time) => {
   (flag ? () => {
     setTimeout(fn, time)
   } : fn)()
 }
 
 const actions = {
-  increase ({state: {isCounting}, commit}, {delay, countSize}) {
+  increase ({state: {isCounting}, commit}, {delay, countSize, delayTime}) {
     if (isCounting) {
       return false
     }
@@ -48,9 +47,9 @@ const actions = {
     execHandler(() => {
       commit(types.INCREASE_COUNT, countSize)
       commit(types.RESET_COUNTING)
-    }, delay, DELAY_TIME)
+    }, delay, delayTime)
   },
-  decrease ({state: {isCounting}, commit}, {delay, countSize}) {
+  decrease ({state: {isCounting}, commit}, {delay, countSize, delayTime}) {
     if (isCounting) {
       return false
     }
@@ -58,9 +57,9 @@ const actions = {
     execHandler(() => {
       commit(types.DECREASE_COUNT, countSize)
       commit(types.RESET_COUNTING)
-    }, delay, DELAY_TIME)
+    }, delay, delayTime)
   },
-  reset ({state: {isCounting}, commit}, {delay}) {
+  reset ({state: {isCounting}, commit}, {delay, delayTime}) {
     if (isCounting) {
       return false
     }
@@ -68,7 +67,7 @@ const actions = {
     execHandler(() => {
       commit(types.RESET_COUNT)
       commit(types.RESET_COUNTING)
-    }, delay, DELAY_TIME)
+    }, delay, delayTime)
   }
 }
 
