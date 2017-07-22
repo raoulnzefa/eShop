@@ -6,7 +6,7 @@
       <span>{{time[1]}}</span>
       <span>{{time[2]}}</span>
     </p>
-    <div class="button-box" v-if="!delay">
+    <div class="button-box" v-if="!isDelay">
       <label>实时:</label>
       <button v-on:click="doAction(increase, false)">增加</button>
       <button v-on:click="doAction('decrease', false)">下降</button>
@@ -19,7 +19,7 @@
       <button v-on:click="doAction(reset, true)">重置</button>
     </div>
     <div>
-      <button v-on:click="log">test</button>
+      <button v-on:click="switchDelay(!isDelay)">{{delay ? '实时' : '延时'}}</button>
     </div>
   </div>
 </template>
@@ -29,6 +29,14 @@
 
   export default {
     name: 'counter',
+    created () {
+    },
+    beforeUpdate () {
+    },
+    data () {
+      return {
+      }
+    },
     props: {
       countSize: {
         default: 1
@@ -37,34 +45,38 @@
         default: false
       },
       delayTime: {
-        default: 300
+        default: 3
       }
     },
     computed: {
+      count () {  // !箭头函数绑定this，不能用 【Q05】
+        return this.$store.state.counter.count
+      },
       ...mapState({
-        count: state => state.counter.count,
+        isDelay: state => state.counter.isDelay,
         time: state => state.counter.time
       })
     },
     methods: {
       doAction (fn, delay) {
         if (typeof fn === 'string') {
-          if (fn === 'decrease' && this.count <= 0) {
-            return false
-          }
-
           fn = this[fn]
         }
 
-        fn && fn({delay, countSize: this.countSize, delayTime: this.delayTime})
+        fn && fn({
+          delay,
+          countSize: this.countSize,
+          delayTime: this.delayTime
+        })
       },
       ...mapActions([
         'increase',
         'decrease',
         'reset'
       ]),
-      log () {
-        console.log(this)
+      switchDelay () {
+        // 在状态更新成功之后再进行View更新 【Q06】，所以必须再Action处理
+        this.$store.dispatch('switchDelay', this.isDelay)
       }
     }
   }

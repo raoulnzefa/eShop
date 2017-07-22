@@ -2,11 +2,13 @@ const types = {
   INCREASE_COUNT: 'INCREASE_COUNT',
   DECREASE_COUNT: 'DECREASE_COUNT',
   RESET_COUNT: 'RESET_COUNT',
+  SWITCH_DELAY: 'SWITCH_DELAY',
   RESET_COUNTING: 'RESET_COUNTING'
 }
 
 const state = {
   count: 0,
+  isDelay: false,
   isCounting: false,
   time: [0, 0, 0]
 }
@@ -15,26 +17,30 @@ const mutations = {
   [types.INCREASE_COUNT] ({count}, payload) {
     state.count = count + payload
     state.time[0]++
-    state.isCounting = !state.isCounting
   },
   [types.DECREASE_COUNT] ({count}, payload) {
     state.count = count - payload
     state.time[1]++
-    state.isCounting = !state.isCounting
   },
   [types.RESET_COUNT] () {
     state.count = 0
     state.time[2]++
-    state.isCounting = !state.isCounting
   },
   [types.RESET_COUNTING] () {
     state.isCounting = !state.isCounting
+  },
+  [types.SWITCH_DELAY] (state, payload) {
+    state.isDelay = !payload
   }
 }
 
-const execHandler = (fn, flag, time) => {
+const execHandler = (commit, fn, flag, time) => {
   (flag ? () => {
-    setTimeout(fn, time)
+    commit(types.RESET_COUNTING)
+    setTimeout(() => {
+      fn()
+      commit(types.RESET_COUNTING)
+    }, time * 1000)
   } : fn)()
 }
 
@@ -44,30 +50,34 @@ const actions = {
       return false
     }
 
-    execHandler(() => {
+    execHandler(commit, () => {
       commit(types.INCREASE_COUNT, countSize)
-      commit(types.RESET_COUNTING)
     }, delay, delayTime)
   },
   decrease ({state: {isCounting}, commit}, {delay, countSize, delayTime}) {
-    if (isCounting) {
+    if (isCounting || state.count <= 0) {
       return false
     }
 
-    execHandler(() => {
+    execHandler(commit, () => {
       commit(types.DECREASE_COUNT, countSize)
-      commit(types.RESET_COUNTING)
     }, delay, delayTime)
   },
   reset ({state: {isCounting}, commit}, {delay, delayTime}) {
-    if (isCounting) {
+    if (isCounting || state.count === 0) {
       return false
     }
 
-    execHandler(() => {
+    execHandler(commit, () => {
       commit(types.RESET_COUNT)
-      commit(types.RESET_COUNTING)
     }, delay, delayTime)
+  },
+  switchDelay ({state: {isCounting}, commit}, delay) {
+    if (isCounting) {   // 可否直接state.isCounting ? 【Q04】
+      return false
+    }
+
+    commit(types.SWITCH_DELAY, delay)
   }
 }
 
