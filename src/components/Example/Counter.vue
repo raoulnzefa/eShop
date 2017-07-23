@@ -1,5 +1,6 @@
 <template>
   <div>
+    <span><i class="fa fa-eercast" aria-hidden="true"></i></span>
     <div class="panel">Count: {{count}}</div>
     <p>
       <span>{{time[0]}}</span>
@@ -81,6 +82,10 @@
     }
   }
 </script>
-<style>
-
+<style lang="scss">
+  @import "funtion";
+  .panel{
+    font-size: rem(18);
+    color: #000 + #f00;
+  }
 </style>

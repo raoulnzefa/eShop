@@ -3,6 +3,8 @@ var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 
+const isDev = process.env.NODE_ENV !== 'production'
+
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -14,7 +16,7 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
+    publicPath: isDev
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
@@ -23,6 +25,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@src': resolve('src'),
+      '@resource': resolve('resource'),
       '@style': resolve('resource/style'),
       '@image': resolve('resource/image')
     }

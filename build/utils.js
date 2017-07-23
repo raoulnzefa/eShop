@@ -23,11 +23,19 @@ exports.cssLoaders = function (options) {
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
     var loaders = [cssLoader]
+
+    if(loader === 'sass'){
+      loaders.push({
+        loader: 'resolve-url-loader'
+      })
+    }
+
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
         options: Object.assign({}, loaderOptions, {
-          sourceMap: options.sourceMap
+          sourceMap: options.sourceMap, // resolve-url-loader require {sourceMap:true}
+          includePaths: ['./resource/style/']
         })
       })
     }

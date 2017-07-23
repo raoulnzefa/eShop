@@ -6,6 +6,10 @@ import App from './components/app'
 import router from './router'
 import store from './store'
 
+import '../resource/style/app.scss'
+
+// import '../resource/plugin/script/flexible'
+
 Vue.config.productionTip = false
 
 sync(store, router)
