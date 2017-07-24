@@ -1,6 +1,5 @@
 <template>
   <div>
-    <span><i class="fa fa-eercast" aria-hidden="true"></i></span>
     <div class="panel">Count: {{count}}</div>
     <p>
       <span>{{time[0]}}</span>

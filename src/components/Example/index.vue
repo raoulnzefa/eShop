@@ -1,6 +1,6 @@
 <template>
   <div class="example">
-    <span>example: {{exampleName}}</span>
+    <span>example: {{name}}</span>
     <router-view></router-view>
   </div>
 </template>
@@ -9,7 +9,9 @@
   import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
   export default {
     computed: {
-      exampleName: () => 'example'
+      ...mapState({
+        name: state => state.route.name
+      })
     }
   }
 </script>
