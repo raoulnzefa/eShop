@@ -31,7 +31,7 @@
   export default {
     name: 'counter',
     mounted () {
-      this.isDelay = this.$store.state.route.query.isDelay === 'true'
+      this.isDelay = this.$store.state.route.query.delay === 'true'
     },
     data () {
       return {
@@ -46,7 +46,7 @@
         default: false
       },
       delayTime: {
-        default: 3
+        default: 1
       }
     },
     computed: {
@@ -63,9 +63,8 @@
     },
     watch: {
       'scope': {
-        handler (curVal, oldVal) {
-          console.log(curVal.isDelay !== oldVal.isDelay)
-          if (curVal.isDelay !== oldVal.isDelay) {
+        handler (curVal, oldVal) {   // curVal === oldVal always true 【Q07】
+          if (this.isDelay !== curVal.isDelay) {
             this.isDelay = curVal.isDelay
           }
         },
