@@ -30,12 +30,12 @@
 
   export default {
     name: 'counter',
-    created () {
-    },
-    beforeUpdate () {
+    mounted () {
+      this.isDelay = this.$store.state.route.query.isDelay === 'true'
     },
     data () {
       return {
+        isDelay: false
       }
     },
     props: {
@@ -50,13 +50,27 @@
       }
     },
     computed: {
+      scope () {
+        return this.$store.state.counter
+      },
       count () {  // !箭头函数绑定this，不能用 【Q05】
-        return this.$store.state.counter.count
+        return this.scope.count
       },
       ...mapState({
-        isDelay: state => state.counter.isDelay,
+        // isDelay: state => state.counter.isDelay,
         time: state => state.counter.time
       })
+    },
+    watch: {
+      'scope': {
+        handler (curVal, oldVal) {
+          console.log(curVal.isDelay !== oldVal.isDelay)
+          if (curVal.isDelay !== oldVal.isDelay) {
+            this.isDelay = curVal.isDelay
+          }
+        },
+        deep: true
+      }
     },
     methods: {
       doAction (fn, delay) {
@@ -76,7 +90,7 @@
         'reset'
       ]),
       switchDelay () {
-        // 在状态更新成功之后再进行View更新 【Q06】，所以必须再Action处理
+        // 在状态更新成功之后再进行View更新 【Q06】，所以必须在Action处理
         this.$store.dispatch('switchDelay', this.isDelay)
       }
     }
@@ -84,7 +98,8 @@
 </script>
 <style lang="scss">
   @import "funtion";
-  .panel{
+
+  .panel {
     font-size: rem(18);
     color: #000 + #f00;
   }
