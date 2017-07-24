@@ -1,2 +1,5 @@
-$topbar-width: 60px;
-$footbar-width: 60px;
+@import "funtion";
+
+$topbar-width: 84px;
+$footbar-width: rem(87);
+$icon-font-size: rem(36);

@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-  import footbar from './footbar'
+  import footbar from './Layout/footbar'
 
   export default {
     name: 'app',

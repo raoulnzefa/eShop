@@ -11,3 +11,34 @@
     clear: both;
   }
 }
+
+%cols-3{
+  @extend %clearfix;
+
+  li{
+    text-align: center;
+    float: left;
+  }
+}
+
+.cols-3-divide{
+  @extend %cols-3;
+
+  li{
+    width: 33.3333%;
+  }
+}
+
+.cols-3-slide{
+  @extend %cols-3;
+
+  li{
+    &:first-child, &:last-child{
+      width: 20%;
+    }
+
+    &:nth-child(2){
+      width: 60%;
+    }
+  }
+}

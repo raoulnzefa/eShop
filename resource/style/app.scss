@@ -1,4 +1,14 @@
 @charset "UTF-8";
 
 @import "reset";
+@import "vars";
+@import "funtion";
 @import "font-awesome-4.7.0/scss/font-awesome";
+
+html {
+  font-size: 37.5px;
+}
+
+.layout-main{
+  padding: rem(14);
+}
