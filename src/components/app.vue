@@ -2,7 +2,9 @@
   <div class="container">
     <topbar :page-title="pageInfo.title" :right-cmp="pageInfo.rightCmp" v-if="pageInfo.showTop"></topbar>
     <layout-main>
-      <router-view></router-view>
+      <transition>
+        <router-view></router-view>
+      </transition>
     </layout-main>
     <footbar v-if="pageInfo.showFoot"></footbar>
   </div>

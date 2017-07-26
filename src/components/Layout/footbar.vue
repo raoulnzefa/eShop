@@ -14,17 +14,17 @@
     computed: {
       barData: () => [
         {
-          icon: 'fa-home',
+          icon: 'icon-homebig',
           text: '首页',
           path: '/home'
         },
         {
-          icon: 'fa-shopping-cart',
+          icon: 'icon-cart',
           text: '店铺',
           path: '/shop'
         },
         {
-          icon: 'fa-user-circle',
+          icon: 'icon-account',
           text: '我的',
           path: '/member'
         }

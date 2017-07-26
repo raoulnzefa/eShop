@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 900px">
     Online Shop
   </div>
 </template>

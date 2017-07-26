@@ -1,13 +1,9 @@
 @charset "UTF-8";
 
-@import "reset";
 @import "vars";
+@import "reset";
 @import "funtion";
-@import "font-awesome-4.7.0/scss/font-awesome";
-
-html {
-  font-size: 37.5px;
-}
+@import "iconfont";
 
 .layout-main {
   position: relative;

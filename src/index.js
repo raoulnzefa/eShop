@@ -5,10 +5,8 @@ import {sync} from 'vuex-router-sync'
 import App from './components/app'
 import router from './router'
 import store from './store'
-
+import '../resource/script/flexible'
 import '../resource/style/app.scss'
-
-// import '../resource/plugin/script/flexible'
 
 Vue.config.productionTip = false
 

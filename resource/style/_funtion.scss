@@ -1,5 +1,4 @@
-$html-base-size: 37.5;
 
 @function rem($px){
-  @return $px / ($html-base-size * 2) * 1rem;
+  @return $px / 750 * 10rem;
 }
