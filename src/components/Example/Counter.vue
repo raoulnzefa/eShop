@@ -24,7 +24,7 @@
   </div>
 </template>
 <script>
-  /* eslint-disable no-unused-vars */
+  // eslint-disable-next-line no-unused-vars
   import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 
   export default {
@@ -89,6 +89,7 @@
       ]),
       switchDelay () {
         // 在状态更新成功之后再进行View更新 【Q06】，所以必须在Action处理
+        console.log(this.beforeRouteUpdate)
         this.$store.dispatch('switchDelay', this.isDelay)
       }
     }

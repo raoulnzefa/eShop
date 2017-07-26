@@ -8,7 +8,7 @@
 
 * View层能否接触到Mutations
 
-* 能否在Mutation里面更改State，而不以Commit mutations的方式根本更改状态。【Q04】
+* 能否在Mutation里面更改State，而不以Commit mutations的方式更改状态。【Q04】
 
 * 箭头函数绑定对象this【Q05】
 

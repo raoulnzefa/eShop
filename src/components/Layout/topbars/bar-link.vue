@@ -1,15 +1,13 @@
 <template>
-  <div>
-
-  </div>
+  <span>分享</span>
 </template>
 <script>
   // eslint-disable-next-line no-unused-vars
   import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
-  export default {
 
-  }
+  export default {}
 </script>
-<style>
+<style lang="scss">
+  @import "utils";
 
 </style>

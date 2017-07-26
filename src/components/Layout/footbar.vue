@@ -6,7 +6,7 @@
   </ul>
 </template>
 <script>
-  /* eslint-disable no-unused-vars */
+  // eslint-disable-next-line no-unused-vars
   import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
   import footbarItem from './footbar-item'
 
@@ -49,7 +49,6 @@
     },
     methods: {
       barClick (index) {
-        console.log('bar click')
         this.barIndex = index
       }
     }
@@ -59,7 +58,7 @@
   @import "utils";
 
   .layout-footbar {
-    height: $footbar-width;
+    height: $footbar-height;
     position: fixed;
     left: 0;
     right: 0;
@@ -67,12 +66,12 @@
 
     @extend %clearfix;
 
-    &:before{
+    &:before {
       display: block;
       content: '';
       width: 100%;
       position: absolute;
-      top:0;
+      top: 0;
       border-top: 1px solid #9d9d9d;
       border-bottom: 1px solid #dedede;
     }

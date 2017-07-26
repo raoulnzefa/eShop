@@ -7,7 +7,7 @@
   </li>
 </template>
 <script>
-  /* eslint-disable no-unused-vars */
+  // eslint-disable-next-line no-unused-vars
   import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 
   export default {

@@ -1,44 +1,76 @@
 <template>
   <section class="layout-main">
-    <ul class="cols-3-divide">
+    <ul class="cols-3-divide tb">
       <li>
-        <router-link :to=""><i class="fa fa-chevron-left" aria-hidden="true"></i></router-link>
+        <a v-if="hasPrev" @click="toPrev" class="tb-icon"><i class="fa fa-chevron-left"></i></a>
       </li>
       <li>
-        <span>{{pageTitle}}</span>
+        <span class="tb-title">{{pageTitle}}</span>
       </li>
       <li>
-
+        <component :is="rightCmp" v-if="rightCmp"></component>
       </li>
     </ul>
   </section>
 </template>
 <script>
-  /* eslint-disable no-unused-vars */
+  // eslint-disable-next-line no-unused-vars
   import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
+  import barLink from './topbars/bar-link'
 
   export default {
     props: {
       pageTitle: {
-        required: true
+        required: true,
+        type: String
       },
+      rightCmp: String,
       hasPrev: {
-        default: false
-      },
-      prevPath: String
+        default: true
+      }
+    },
+    components: {
+      barLink
     },
     computed: {},
     data () {
       return {}
     },
-    methods: {}
+    methods: {
+      toPrev () {
+        this.$router.go(-1)
+      }
+    }
   }
 </script>
 <style lang="scss">
   @import "utils";
 
-  .layout-topbar {
-    padding: 0 rem(15);
+  .tb {
+    height: $topbar-height;
 
+    :first-child {
+      text-align: left;
+    }
+
+    li {
+      height: 100%;
+      line-height: $topbar-height;
+    }
+
+    .tb-icon {
+      display: block;
+      margin-left: rem(12);
+      font-size: rem(40);
+      font-weight: 400;
+      color: #5a5a5a;
+    }
+
+    .tb-title {
+      display: block;
+      font-size: rem(32);
+      color: #020202;
+      text-align: center;
+    }
   }
 </style>
