@@ -9,19 +9,19 @@ gulp.task('decompress', () => {
   .pipe(gulp.dest('./source/'))
 })
 
-gulp.task('copy-font', () => {
+gulp.task('copy-font', ['decompress'], () => {
   return gulp.src('./source/*/iconfont.{eot,svg,ttf,woff}')
   .pipe(plugins.flatten())
   .pipe(gulp.dest('./resource/font'))
 })
 
-gulp.task('write-css', () => {
+gulp.task('write-css', ['decompress'], () => {
   return gulp.src('./source/*/iconfont.css')
   .pipe(plugins.rename('_iconfont.scss'))
-  .pipe(plugins.replace(/url\('(.*)'\)/g, 'url(\'#{font-dir}$1\')'))
+  .pipe(plugins.replace(/url\('(.*)'\)/g, 'url(\'#{$font-dir}$1\')'))
   .pipe(gulp.dest('./resource/style/'))
 })
 
-gulp.task('build', ['decompress', 'copy-font', 'write-css'], () => {
+gulp.task('build', ['copy-font', 'write-css'], () => {
   del.sync(['./source/*', '!./source/icon.zip'])
 })

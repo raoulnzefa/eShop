@@ -1,7 +1,7 @@
 <template>
   <li :class="['bar-item', {'item-active': barIndex === index}]" @click="barItemClick(index)">
     <router-link :to="path">
-      <span class="bar-icon"><i :class="['icon', iconCls]" aria-hidden="true"></i></span>
+      <span class="bar-icon"><i :class="['icon', 'iconfont', iconCls]" aria-hidden="true"></i></span>
       <span class="bar-text">{{text}}</span>
     </router-link>
   </li>
