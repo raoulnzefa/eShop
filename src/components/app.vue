@@ -14,7 +14,6 @@
   import layoutMain from './Layout/layout-main'
   import footbar from './Layout/footbar'
   import pageInfo from '../constant/layout'
-  import '@root/example/async&awit'
 
   export default {
     name: 'app',

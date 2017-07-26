@@ -2,12 +2,12 @@
   <section class="layout-main">
     <ul class="cols-3-divide tb">
       <li>
-        <a v-if="hasPrev" @click="toPrev" class="tb-icon"><i class="fa fa-chevron-left"></i></a>
+        <a v-if="hasPrev" @click="toPrev" class="tb-icon"><i class="icon iconfont icon-back"></i></a>
       </li>
       <li>
         <span class="tb-title">{{pageTitle}}</span>
       </li>
-      <li>
+      <li class="tb-right">
         <component :is="rightCmp" v-if="rightCmp"></component>
       </li>
     </ul>
@@ -47,6 +47,7 @@
   @import "utils";
 
   .tb {
+    border-bottom: 1px solid #ececee;
     height: $topbar-height;
 
     :first-child {
@@ -71,6 +72,10 @@
       font-size: rem(32);
       color: #020202;
       text-align: center;
+    }
+
+    .tb-right{
+      font-size: rem(28);
     }
   }
 </style>

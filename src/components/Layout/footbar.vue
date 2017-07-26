@@ -64,7 +64,7 @@
     right: 0;
     bottom: 0;
 
-    @extend %clearfix;
+    @include clearfix();
 
     &:before {
       display: block;

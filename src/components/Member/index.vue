@@ -16,7 +16,3 @@
     methods: {}
   }
 </script>
-<style lang="scss">
-  @import "utils";
-
-</style>
